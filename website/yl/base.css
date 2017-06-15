@@ -1,0 +1,22 @@
+/*
+* by willwang 
+* 2017-06-15
+*/
+.container{
+    margin-top: 100px;
+}
+.col-xs-4{
+    padding-left: 0;
+    padding-right: 0;
+}
+.thumbnail{
+    margin-bottom: 0;
+}
+.thumbnail>img{
+    max-width: 70%;
+}
+@media screen and (min-width: 768px) {
+    .container{
+        width: 750px;
+    }
+}
