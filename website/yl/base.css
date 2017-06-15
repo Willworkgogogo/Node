@@ -2,6 +2,9 @@
 * by willwang 
 * 2017-06-15
 */
+.hidden{
+    display: none;
+}
 .container{
     margin-top: 100px;
 }

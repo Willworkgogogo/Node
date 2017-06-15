@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>世界上最美的女人,是ylmai</title>
     <link rel="shortcut icon" type="image/x-icon" href="./images/favicon.ico">
-    <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="./base.css">
 </head>
 <body>
@@ -35,8 +35,8 @@
                 </a>
             </div>
             <div class="col-xs-4 col-md-4">
-                <a href="javascript:;" class="thumbnail">
-                    <img src="./images/she/02.png" alt="">
+                <a href="/yl/images/she/01.png" target="_blank" class="thumbnail main_img_a">
+                    <img class="main_img" src="./images/she/01.png" alt="">
                 </a>
             </div>
             <div class="col-xs-4 col-md-4">
@@ -63,5 +63,49 @@
             </div>
         </div>
     </div>
+    <div class="hidden">
+        <img src="./images/she/02.png" alt="">
+        <img src="./images/she/03.png" alt="">
+        <img src="./images/she/04.png" alt="">
+        <img src="./images/she/05.png" alt="">
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/2.1.2/jquery.min.js"></script>
+    <script>
+        $(function() {
+            function ShowImg(obj) {
+                this.dom = {
+                    $main_img: obj.$main_img,
+                    $main_img_a: obj.$main_img_a
+                };
+                this.init()
+            }
+
+            ShowImg.prototype = {
+                init: function() {
+                    this.changeSrc();
+                },
+                changeSrc: function() {
+                    var _this = this,
+                        i = 1;
+                    
+                    var callback = function() {
+                        i++;
+                        i > 5 ? i = 1 : i;
+                        console.log('i :', i)
+                        var src = './images/she/0' + i + '.png';
+                        _this.dom.$main_img.attr('src', src);
+                        _this.dom.$main_img_a.attr('href', src);
+                    }
+
+                    setInterval(callback, 2000)
+                }
+            }
+
+            new ShowImg({
+                $main_img: $('.main_img'),
+                $main_img_a: $('.main_img_a')
+            });
+        })
+    </script>
 </body>
 </html>
