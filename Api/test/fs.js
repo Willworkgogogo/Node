@@ -45,8 +45,8 @@
  *  write file
  */
 
- var fs = require("fs");
- var data = `Hello, Node.js`;
+// var fs = require("fs");
+//  var data = `Hello, Node.js`;
 
 //  fs.writeFile("text.txt", data, function(err) {
 //      if (err) {
@@ -56,24 +56,45 @@
 //      }
 //  })
 
-fs.open("text.txt", 'a', function(err, fd) {
-    if (err) {
-        console.log(err)
-    }else {
-        console.log('open...');
-        console.log(fd);
-        fs.appendFile(fd, '! i\'m appended into this file...hahaha', function(err){
-            if (err) {
-                console.log(err)
-            }else {
-                console.log('ok.')
-            }
-        } )
-    }
-})
+// fs.open("text.txt", 'a', function(err, fd) {
+//     if (err) {
+//         console.log(err)
+//     }else {
+//         console.log('open...');
+//         console.log(fd);
+//         fs.appendFile(fd, '! i\'m appended into this file...hahaha', function(err){
+//             if (err) {
+//                 console.log(err)
+//             }else {
+//                 console.log('ok.')
+//             }
+//         } )
+//     }
+// })
 
 //  fs.stat("text.txt", function(err, stats) {
 //      console.log("isFile: ", stats.isFile());
 //      console.log(`${stats.atime} === ${stats.birthtime} === ${stats.blksize} === ${stats.blocks} === ${stats.ctime} === ${stats.mtime}`)
 //  })
 
+
+/**
+ * pipe
+ *
+ */
+var fs = require("fs");
+var zlib = require("zlib");
+
+// 压缩text.txt 文件为 text.txt.gz
+// fs.createReadStream('./text.txt', 'utf-8')
+//     .pipe(zlib.createGzip())
+//     .pipe(fs.createWriteStream('text.txt.gz'));
+
+// console.log("压缩完成...")
+
+// 解压缩
+fs.createReadStream('./text.txt.gz')
+    .pipe(zlib.createGunzip())
+    .pipe(fs.createWriteStream('test.txt'))
+
+console.log("解压完成...")
